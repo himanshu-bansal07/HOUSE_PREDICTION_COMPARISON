@@ -141,8 +141,7 @@ def predict_house_price(med_inc, house_age, ave_rooms, ave_bedrms, population, a
         
     return predictions['BGD'], predictions['SGD'], predictions['MBGD']
 
-# 1. Train models and generate plot
-plot_path = train_and_plot()
+plot_path = None
 
 # 2. Build the Gradio UI
 with gr.Blocks() as ui:
@@ -178,8 +177,12 @@ with gr.Blocks() as ui:
     )
 
 if __name__ == "__main__":
-    print("Launching Gradio interface...")
+    print("Training models...")
     
+    plot_path = train_and_plot()
+
+    print("Launching Gradio interface...")
+
     port = int(os.environ.get("PORT", 7860))
 
     ui.launch(
