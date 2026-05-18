@@ -179,4 +179,10 @@ with gr.Blocks() as ui:
 
 if __name__ == "__main__":
     print("Launching Gradio interface...")
-    ui.launch(inbrowser=True)
+    
+    port = int(os.environ.get("PORT", 7860))
+
+    ui.launch(
+        server_name="0.0.0.0",
+        server_port=port
+    )
